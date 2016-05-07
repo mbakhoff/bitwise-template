@@ -2,6 +2,7 @@ package bitwise;
 
 import java.io.IOException;
 import java.io.OutputStream;
+import java.nio.charset.StandardCharsets;
 
 public class Output {
 
@@ -13,7 +14,10 @@ public class Output {
     // steps needed:
     // 1) use right shift + AND to isolate each byte
     // 2) write each byte separately
-    // TODO: implement
+    os.write(v >> 24);
+    os.write(v >> 16);
+    os.write(v >> 8);
+    os.write(v);
   }
 
   /**
@@ -25,6 +29,8 @@ public class Output {
    */
   public static void writeUTF(OutputStream os, String str) throws IOException {
     // hint: use String#getBytes(Charset)
-    // TODO: implement
+    byte[] bytes = str.getBytes(StandardCharsets.UTF_8);
+    writeInt(os, bytes.length);
+    os.write(bytes);
   }
 }

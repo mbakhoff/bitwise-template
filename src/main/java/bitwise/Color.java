@@ -27,19 +27,19 @@ public class Color {
   // getAlpha should return 0xDD
 
   public int getRed() {
-    return 0; // TODO: implement
+    return (rgba >> 24) & 0xFF;
   }
 
   public int getGreen() {
-    return 0; // TODO: implement
+    return (rgba >> 16) & 0xFF;
   }
 
   public int getBlue() {
-    return 0; // TODO: implement
+    return (rgba >> 8) & 0xFF;
   }
 
   public int getAlpha() {
-    return 0; // TODO: implement
+    return rgba & 0xFF;
   }
 
   // two steps are needed to set the value:
@@ -52,22 +52,22 @@ public class Color {
 
   public void setRed(int value) {
     assertBounds(value);
-    // TODO: implement
+    rgba = (rgba & 0x00FFFFFF) | (value << 24);
   }
 
   public void setGreen(int value) {
     assertBounds(value);
-    // TODO: implement
+    rgba = (rgba & 0xFF00FFFF) | (value << 16);
   }
 
   public void setBlue(int value) {
     assertBounds(value);
-    // TODO: implement
+    rgba = (rgba & 0xFFFF00FF) | (value << 8);
   }
 
   public void setAlpha(int value) {
     assertBounds(value);
-    // TODO: implement
+    rgba = (rgba & 0xFFFFFF00) | value;
   }
 
   private void assertBounds(int value) {

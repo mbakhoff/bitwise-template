@@ -39,7 +39,7 @@ public class OutputTest {
       assertEquals("string length in bytes", 7, in.readInt());
       assertArrayEquals("string contents",
           new byte[]{97, 49, -61, -74, -30, -126, -84},
-          TestUtil.readBytes(in, 7));
+          in.readNBytes(7));
       assertEquals("has no extra bytes", -1, in.read());
     });
   }

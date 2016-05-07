@@ -20,10 +20,7 @@ public class TestUtil {
   }
 
   private static String leftPad(String str) {
-    StringBuilder sb = new StringBuilder(32);
-    for (int i = 0; i < 32 - str.length(); i++)
-      sb.append('0');
-    return sb.append(str).toString();
+    return "0".repeat(Math.max(0, 32 - str.length())) + str;
   }
 
   public static InputStream prepare(InputBuilder builder) throws IOException {
@@ -34,12 +31,6 @@ public class TestUtil {
 
   public static void verify(ByteArrayOutputStream baos, Verifier verifier) throws IOException {
     verifier.verify(new DataInputStream(new ByteArrayInputStream(baos.toByteArray())));
-  }
-
-  public static byte[] readBytes(DataInputStream in, int count) throws IOException {
-    byte[] received = new byte[count];
-    in.readFully(received);
-    return received;
   }
 
   @FunctionalInterface

@@ -2,6 +2,7 @@ package bitwise;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
 
 public class Input {
 
@@ -15,7 +16,13 @@ public class Input {
     // 2) use AND to mask out sign extension of each byte
     // 3) use left shift + OR to combine them
 
-    return 0; // TODO: implement
+    byte[] b = is.readNBytes(4);
+    int result = 0;
+    result = result | ((b[0] & 0xFF) << 24);
+    result = result | ((b[1] & 0xFF) << 16);
+    result = result | ((b[2] & 0xFF) << 8);
+    result = result | (b[3] & 0xFF);
+    return result;
   }
 
   /**
@@ -29,6 +36,8 @@ public class Input {
    */
   public static String readUTF(InputStream is) throws IOException {
     // hint: String has an useful constructor for byte[]
-    return null; // TODO: implement
+    int length = readInt(is);
+    byte[] stringBytes = is.readNBytes(length);
+    return new String(stringBytes, StandardCharsets.UTF_8);
   }
 }
