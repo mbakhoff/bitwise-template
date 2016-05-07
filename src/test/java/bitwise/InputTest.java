@@ -14,7 +14,7 @@ public class InputTest {
     int value = 0x0F1F2F3F;
     InputStream stream = TestUtil.prepare(out -> out.writeInt(value));
     try (DataInputStream dis = new DataInputStream(stream)) {
-      assertEquals(Integer.toBinaryString(value), value, dis.readInt());
+      TestUtil.assertEquals(value, dis.readInt());
     }
   }
 
@@ -23,7 +23,7 @@ public class InputTest {
     int value = 0xF0F1F2F3;
     InputStream stream = TestUtil.prepare(out -> out.writeInt(value));
     try (DataInputStream dis = new DataInputStream(stream)) {
-      assertEquals(Integer.toBinaryString(value), value, dis.readInt());
+      TestUtil.assertEquals(value, dis.readInt());
     }
   }
 

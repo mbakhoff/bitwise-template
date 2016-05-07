@@ -1,5 +1,7 @@
 package bitwise;
 
+import org.junit.Assert;
+
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.FilterOutputStream;
@@ -10,6 +12,21 @@ import java.io.PipedInputStream;
 import java.io.PipedOutputStream;
 
 public class TestUtil {
+
+  public static void assertEquals(int expected, int actual) {
+    Assert.assertEquals(bin(expected), bin(actual));
+  }
+
+  private static String bin(int value) {
+    return leftPad(Integer.toBinaryString(value), '0', 32);
+  }
+
+  private static String leftPad(String str, char padding, int len) {
+    StringBuilder sb = new StringBuilder(len);
+    for (int i = 0; i < len - str.length(); i++)
+      sb.append(padding);
+    return sb.append(str).toString();
+  }
 
   public static InputStream prepare(InputBuilder builder) throws IOException {
     PipedOutputStream pos = new PipedOutputStream();

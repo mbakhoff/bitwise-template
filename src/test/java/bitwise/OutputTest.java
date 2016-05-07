@@ -13,7 +13,7 @@ public class OutputTest {
   public void testPositiveInt() throws Exception {
     int value = 0x0F1F2F3F;
     OutputStream out = TestUtil.outputVerifiedOnClose(in -> {
-      assertEquals(Integer.toBinaryString(value), value, in.readInt());
+      TestUtil.assertEquals(value, in.readInt());
       assertEquals("stream reports end", -1, in.read());
     });
     try (DataOutputStream dos = new DataOutputStream(out)) {
@@ -25,7 +25,7 @@ public class OutputTest {
   public void testNegativeInt() throws Exception {
     int value = 0xF0F1F2F3;
     OutputStream out = TestUtil.outputVerifiedOnClose(in -> {
-      assertEquals(Integer.toBinaryString(value), value, in.readInt());
+      TestUtil.assertEquals(value, in.readInt());
       assertEquals("stream reports end", -1, in.read());
     });
     try (DataOutputStream dos = new DataOutputStream(out)) {
