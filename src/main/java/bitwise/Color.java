@@ -18,39 +18,43 @@ public class Color {
   }
 
   public int getRed() {
-    return 0; // TODO: implement
+    return ((rgba >> 24) & 0xFF);
   }
 
   public int getGreen() {
-    return 0; // TODO: implement
+    return ((rgba >> 16) & 0xFF);
   }
 
   public int getBlue() {
-    return 0; // TODO: implement
+    return ((rgba >> 8) & 0xFF);
   }
 
   public int getAlpha() {
-    return 0; // TODO: implement
+    return (rgba & 0xFF);
   }
 
   public void setRed(int value) {
     assertBounds(value);
-    // TODO: implement
+    rgba &= 0x00FFFFFF;
+    rgba |= (value << 24);
   }
 
   public void setGreen(int value) {
     assertBounds(value);
-    // TODO: implement
+    rgba &= 0xFF00FFFF;
+    rgba |= (value << 16);
   }
 
   public void setBlue(int value) {
     assertBounds(value);
-    // TODO: implement
+    rgba &= 0xFFFF00FF;
+    rgba |= (value << 8);
   }
 
   public void setAlpha(int value) {
     assertBounds(value);
-    // TODO: implement
+    rgba &= 0xFFFFFF00;
+    rgba |= value;
   }
 
   private void assertBounds(int value) {
