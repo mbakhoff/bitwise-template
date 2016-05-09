@@ -83,9 +83,9 @@ public class ColorTest {
   }
 
   private static int pack(int ... bytes) {
-    ByteBuffer buf = ByteBuffer.allocate(bytes.length).order(ByteOrder.LITTLE_ENDIAN);
-    for (int i = bytes.length - 1; i >= 0; i--) {
-      buf.put((byte) bytes[i]);
+    ByteBuffer buf = ByteBuffer.allocate(bytes.length).order(ByteOrder.BIG_ENDIAN);
+    for (int b : bytes) {
+      buf.put((byte) b);
     }
     buf.flip();
     return buf.getInt();
