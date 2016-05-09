@@ -1,17 +1,20 @@
 package bitwise;
 
+import com.google.gson.Gson;
+import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.client.methods.HttpUriRequest;
+import org.apache.http.client.methods.RequestBuilder;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClients;
 import org.junit.Assert;
 
+import java.io.*;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
-import java.io.FilterOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.io.PipedInputStream;
-import java.io.PipedOutputStream;
 
 public class TestUtil {
+  private static final CloseableHttpClient HTTP_CLIENT = HttpClients.createDefault();
+  private static final Gson GSON = new Gson();
 
   public static void assertEquals(int expected, int actual) {
     Assert.assertEquals(bin(expected), bin(actual));
@@ -22,10 +25,33 @@ public class TestUtil {
   }
 
   private static String leftPad(String str, char padding, int len) {
-    StringBuilder sb = new StringBuilder(len);
-    for (int i = 0; i < len - str.length(); i++)
-      sb.append(padding);
-    return sb.append(str).toString();
+    // left pad as a service
+    HttpUriRequest request = RequestBuilder.get("https://api.left-pad.io")
+            .addParameter("str", str)
+            .addParameter("ch", Character.toString(padding))
+            .addParameter("len", Integer.toString(len))
+            .build();
+
+    try (CloseableHttpResponse response = HTTP_CLIENT.execute(request)) {
+      InputStream content = response.getEntity().getContent();
+      LeftPadResponse leftPadResponse = GSON.fromJson(new InputStreamReader(content), LeftPadResponse.class);
+      return leftPadResponse.getString();
+    }
+    catch (IOException e) {
+      throw new RuntimeException(e);
+    }
+  }
+
+  private static class LeftPadResponse {
+    private final String str;
+
+    private LeftPadResponse(String str) {
+      this.str = str;
+    }
+
+    public String getString() {
+      return str;
+    }
   }
 
   public static InputStream prepare(InputBuilder builder) throws IOException {
