@@ -14,7 +14,10 @@ public class DataOutputStream extends FilterOutputStream {
    * Writes an int to the underlying output stream as four bytes, high byte first.
    */
   public void writeInt(int v) throws IOException {
-    // TODO: implement
+    out.write(v >> 24);
+    out.write(v >> 16);
+    out.write(v >> 8);
+    out.write(v);
   }
 
   /**
@@ -27,6 +30,8 @@ public class DataOutputStream extends FilterOutputStream {
    * encoding for the character.
    */
   public void writeUTF(String str) throws IOException {
-    // TODO: implement
+    byte[] stringBytes = str.getBytes();
+    writeInt(stringBytes.length);
+    out.write(stringBytes);
   }
 }

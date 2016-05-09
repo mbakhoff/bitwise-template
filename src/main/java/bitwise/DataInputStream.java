@@ -14,7 +14,9 @@ public class DataInputStream extends FilterInputStream {
    * Reads four input bytes and returns an int value.
    */
   public int readInt() throws IOException {
-    return 0; // TODO: implement
+    byte[] b = new byte[4];
+    in.read(b);
+    return java.nio.ByteBuffer.wrap(b).getInt();
   }
 
   /**
@@ -27,6 +29,8 @@ public class DataInputStream extends FilterInputStream {
    * String using UTF-8 encoding.
    */
   public String readUTF() throws IOException {
-    return null; // TODO: implement
+    byte[] bString = new byte[readInt()];
+    in.read(bString);
+    return new String(bString);
   }
 }
