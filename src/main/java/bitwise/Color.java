@@ -3,7 +3,7 @@ package bitwise;
 /**
  * Holds a color value with 8-bit red, green, blue and alpha components.
  * The components are packed into a single 32-bit integer, where the
- * component order from right to left is: red, green, blue, alpha.
+ * component order from left to right is: red, green, blue, alpha.
  */
 public class Color {
 
