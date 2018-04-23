@@ -1,19 +1,14 @@
 package bitwise;
 
-import java.io.FilterInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
-public class DataInputStream extends FilterInputStream {
-
-  public DataInputStream(InputStream in) {
-    super(in);
-  }
+public class Input {
 
   /**
    * Reads four input bytes and returns an int value.
    */
-  public int readInt() throws IOException {
+  public static int readInt(InputStream is) throws IOException {
     return 0; // TODO: implement
   }
 
@@ -26,7 +21,7 @@ public class DataInputStream extends FilterInputStream {
    * bytes to be read. These bytes are then converted to a
    * String using UTF-8 encoding.
    */
-  public String readUTF() throws IOException {
+  public static String readUTF(InputStream is) throws IOException {
     return null; // TODO: implement
   }
 }
