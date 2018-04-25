@@ -130,10 +130,11 @@ int b = 0b00100011;
 int result = a & b; // 0b00100010
 ```
 
-Useful for isolating a single byte from an int:
+Useful for isolating a single byte:
 ```
 int i = 0xAABBCCDD;
-int lastByte = i & 0xFF; // 0x000000DD
+int lastByte   = i & 0xFF;  // 0x000000DD
+int nextToLast = i & 0xFF00 // 0x0000CC00
 ```
 
 ### Bitwise OR
@@ -155,8 +156,9 @@ int result = a | b; // 0b00111011
 
 Useful for combining values:
 ```
-int i = 0x00AA0000;
-int combined = i | 0xFF; // 0x00AA00FF
+int a = 0x00AA0000;
+int b = 0x0000BB00;
+int combined = a | b; // 0x00AABB00
 ```
 
 ### Signed left shift
@@ -184,7 +186,7 @@ byte b = 0b01001000;
 byte x = b >> 3; // 0b00001001
 
 byte b = 0b10010000;
-byte x = b >> 3; // 0b11110010 - sign extension
+byte x = b >> 3; // 0b11110010 (sign extension)
 ```
 
 Useful for extracting a byte from wider values:
