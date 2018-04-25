@@ -6,9 +6,13 @@ import java.io.OutputStream;
 public class Output {
 
   /**
-   * Writes an int to the underlying output stream as four bytes, high byte first.
+   * Writes an int to the underlying output stream as four bytes.
+   * Byte order is big-endian.
    */
   public static void writeInt(OutputStream os, int v) throws IOException {
+    // steps needed:
+    // 1) use right shift + AND to isolate each byte
+    // 2) write each byte separately
     // TODO: implement
   }
 
@@ -21,6 +25,7 @@ public class Output {
    * length, UTF-8 encoded bytes of the string are outputted.
    */
   public static void writeUTF(OutputStream os, String str) throws IOException {
+    // hint: use String#getBytes
     // TODO: implement
   }
 }

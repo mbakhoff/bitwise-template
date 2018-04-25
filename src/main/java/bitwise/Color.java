@@ -17,6 +17,15 @@ public class Color {
     this.rgba = rgba;
   }
 
+  // use right shift + AND to extract the color values
+
+  // samples:
+  // given rgba = 0xAABBCCDD
+  // getRed   should return 0xAA
+  // getGreen should return 0xBB
+  // getBlue  should return 0xCC
+  // getAlpha should return 0xDD
+
   public int getRed() {
     return 0; // TODO: implement
   }
@@ -32,6 +41,14 @@ public class Color {
   public int getAlpha() {
     return 0; // TODO: implement
   }
+
+  // two steps are needed to set the value:
+  // 1) clear the old value using AND
+  // 2) set the new values using left shift + OR
+
+  // sample:
+  // given rgba = 0x00FF00AB
+  // setAlpha(0xBA) should result in rgba = 0x00FF00BA
 
   public void setRed(int value) {
     assertBounds(value);

@@ -7,8 +7,12 @@ public class Input {
 
   /**
    * Reads four input bytes and returns an int value.
+   * Byte order is big-endian.
    */
   public static int readInt(InputStream is) throws IOException {
+    // steps needed:
+    // 1) read 4 bytes from the stream
+    // 2) use left shift + OR to combine them
     return 0; // TODO: implement
   }
 
@@ -22,6 +26,7 @@ public class Input {
    * String using UTF-8 encoding.
    */
   public static String readUTF(InputStream is) throws IOException {
+    // hint: String has an useful constructor for byte[]
     return null; // TODO: implement
   }
 }
