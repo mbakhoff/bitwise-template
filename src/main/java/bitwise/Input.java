@@ -13,6 +13,17 @@ public class Input {
     // steps needed:
     // 1) read 4 bytes from the stream
     // 2) use left shift + OR to combine them
+
+    // note that is.read() returns an int. the value either
+    // contains the byte value or -1 if end of stream was
+    // reached. if the value is not -1, then it is safe
+    // to cast the int to a byte.
+
+    // a more efficent solution would use is.read(byte[])
+    // to read multiple bytes with a single call. don't
+    // forget to check the return value for the number of
+    // bytes that was actually read into the buffer.
+
     return 0; // TODO: implement
   }
 
