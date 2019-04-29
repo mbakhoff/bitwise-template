@@ -19,13 +19,12 @@ public class Output {
   /**
    * Writes a string to the underlying output stream using UTF-8 encoding.
    * <p>
-   * First, four bytes are written to the output stream as if by the writeInt
-   * method giving the number of bytes to follow. This value is the number of
-   * bytes actually written out, not the length of the string. Following the
-   * length, UTF-8 encoded bytes of the string are outputted.
+   * First, write four bytes using writeInt that show the size of the UTF-8
+   * encoded string in bytes (not the string length). Next, write the UTF-8
+   * encoded bytes of the string.
    */
   public static void writeUTF(OutputStream os, String str) throws IOException {
-    // hint: use String#getBytes
+    // hint: use String#getBytes(Charset)
     // TODO: implement
   }
 }
